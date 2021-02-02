@@ -122,8 +122,6 @@ Public Class FrmVendas
     End Sub
 
     Private Sub BuscarDadosProduto()
-        'Dim IdProduto As Integer
-        'IdProduto = Convert.ToInt32(cbProduto.SelectedValue.ToString())
 
         Dim IdProduto As Integer
         IdProduto = cbProduto.SelectedValue()
@@ -168,21 +166,81 @@ Public Class FrmVendas
     End Sub
 
     Private Sub CalcularTotal()
-        Dim total As Decimal
-        total = txtValor.Text * txtQuantidade.Text
-        txtTotal.Text = total
+        If txtQuantidade.Text <> "" Then
+            Dim total As Decimal
+            total = txtValor.Text * txtQuantidade.Text
+            txtTotal.Text = total
+        End If
+
     End Sub
 
     Private Sub cbProduto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProduto.SelectedIndexChanged
         BuscarDadosProduto()
     End Sub
 
-    Private Sub txtQuantidade_TextChanged(sender As Object, e As EventArgs) Handles txtQuantidade.TextChanged
-
-
-    End Sub
-
     Private Sub txtTotal_TextChanged(sender As Object, e As EventArgs) Handles txtTotal.TextChanged
         CalcularTotal()
     End Sub
+
+    Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
+        If txtQuantidade.Text > "0" Then
+
+            If txtQuantidade.Text <= txtEstoque.Text Then
+                Try
+                    'Abrindo conexão
+                    Abrir()
+
+                    'INSERT           
+                    Dim cmd As MySqlCommand
+                    Dim sql As String
+
+                    'formatação de data
+                    Dim data_venda As String
+                    data_venda = Now.ToString("yyyy-MM-dd")
+                    'id	produto	cliente	quantidade	valor_total	data_venda
+
+                    sql = "INSERT INTO tb_vendas (produto, cliente, quantidade, valor_total, data_venda) VALUES ('" & cbProduto.SelectedValue & "', '" & txtCliente.Text & "', '" & txtQuantidade.Text & "', '" & txtTotal.Text & "', '" & data_venda & "')"
+                    cmd = New MySqlCommand(sql, con)
+                    cmd.ExecuteNonQuery()
+                    'Listagem da dataGrid
+                    Listar()
+                    'Update
+                    'ABATENDO ESTOQUE 
+                    Dim cmdEstoque As MySqlCommand
+                    Dim sqlEstoque As String
+
+                    Dim total As Integer
+                    total = txtEstoque.Text - txtQuantidade.Text
+                    sqlEstoque = "UPDATE tb_produtos SET quantidade = '" & total & "' WHERE id = '" & cbProduto.SelectedValue & "' "
+
+                    cmdEstoque = New MySqlCommand(sqlEstoque, con)
+                    cmdEstoque.ExecuteNonQuery()
+
+
+
+
+                    MsgBox("Salvo com sucesso!!", MsgBoxStyle.Information, "Dados Salvos")
+                    DesabilitarCampos()
+                    DesabilitarBtns()
+                    LimparCampos()
+
+                Catch ex As Exception
+                    MsgBox("Erro no salvar" + ex.Message)
+                End Try
+            Else
+                MsgBox("Quantidade não valida no estoque", MsgBoxStyle.Information, "Erro")
+                txtQuantidade.Focus()
+            End If
+
+        Else
+            MsgBox("Preencha os campos", MsgBoxStyle.Information, "Erro")
+            txtQuantidade.Focus()
+        End If
+    End Sub
+
+    Private Sub txtQuantidade_MouseLeave(sender As Object, e As EventArgs) Handles txtQuantidade.MouseLeave
+        CalcularTotal()
+    End Sub
+
+
 End Class

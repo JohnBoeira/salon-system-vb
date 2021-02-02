@@ -105,7 +105,7 @@ Partial Class FrmVendas
         Me.txtQuantidade.Name = "txtQuantidade"
         Me.txtQuantidade.Size = New System.Drawing.Size(103, 20)
         Me.txtQuantidade.TabIndex = 50
-        Me.txtQuantidade.Text = "00"
+        Me.txtQuantidade.Text = "1"
         '
         'Label2
         '
