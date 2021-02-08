@@ -45,6 +45,8 @@ Partial Class FrmVendas
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtEstoque = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblTotalDia = New System.Windows.Forms.Label()
         CType(Me.grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.img, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -147,7 +149,7 @@ Partial Class FrmVendas
         Me.btnRemover.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MintCream
         Me.btnRemover.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Honeydew
         Me.btnRemover.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRemover.Location = New System.Drawing.Point(431, 345)
+        Me.btnRemover.Location = New System.Drawing.Point(384, 345)
         Me.btnRemover.Name = "btnRemover"
         Me.btnRemover.Size = New System.Drawing.Size(65, 65)
         Me.btnRemover.TabIndex = 61
@@ -163,7 +165,7 @@ Partial Class FrmVendas
         Me.btnEditar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MintCream
         Me.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Honeydew
         Me.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEditar.Location = New System.Drawing.Point(324, 345)
+        Me.btnEditar.Location = New System.Drawing.Point(298, 345)
         Me.btnEditar.Name = "btnEditar"
         Me.btnEditar.Size = New System.Drawing.Size(65, 65)
         Me.btnEditar.TabIndex = 60
@@ -194,7 +196,7 @@ Partial Class FrmVendas
         Me.btnNovo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MintCream
         Me.btnNovo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Honeydew
         Me.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNovo.Location = New System.Drawing.Point(111, 345)
+        Me.btnNovo.Location = New System.Drawing.Point(139, 345)
         Me.btnNovo.Name = "btnNovo"
         Me.btnNovo.Size = New System.Drawing.Size(65, 65)
         Me.btnNovo.TabIndex = 58
@@ -284,12 +286,34 @@ Partial Class FrmVendas
         Me.txtEstoque.Size = New System.Drawing.Size(103, 20)
         Me.txtEstoque.TabIndex = 72
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Location = New System.Drawing.Point(492, 345)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(30, 13)
+        Me.Label7.TabIndex = 74
+        Me.Label7.Text = "total:"
+        '
+        'lblTotalDia
+        '
+        Me.lblTotalDia.AutoSize = True
+        Me.lblTotalDia.BackColor = System.Drawing.Color.Transparent
+        Me.lblTotalDia.Location = New System.Drawing.Point(528, 345)
+        Me.lblTotalDia.Name = "lblTotalDia"
+        Me.lblTotalDia.Size = New System.Drawing.Size(10, 13)
+        Me.lblTotalDia.TabIndex = 75
+        Me.lblTotalDia.Text = "-"
+        '
         'FrmVendas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.SistemaSalao.My.Resources.Resources.fundo_sistemas_tamanho_maior
         Me.ClientSize = New System.Drawing.Size(605, 428)
+        Me.Controls.Add(Me.lblTotalDia)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txtEstoque)
         Me.Controls.Add(Me.Label4)
@@ -345,4 +369,6 @@ Partial Class FrmVendas
     Friend WithEvents txtTotal As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents txtEstoque As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents lblTotalDia As Label
 End Class
