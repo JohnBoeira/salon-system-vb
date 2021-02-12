@@ -165,6 +165,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSClientes.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Apresentação\FrmMovimentacoes.Designer.vb">
+      <DependentUpon>FrmMovimentacoes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\FrmMovimentacoes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -222,6 +228,9 @@
     <EmbeddedResource Include="Apresentação\Relatorios\RelProdutos.rdlc" />
     <EmbeddedResource Include="Apresentação\Relatorios\RelProdutosFrm.resx">
       <DependentUpon>RelProdutosFrm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\FrmMovimentacoes.resx">
+      <DependentUpon>FrmMovimentacoes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

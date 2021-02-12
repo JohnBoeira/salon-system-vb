@@ -94,4 +94,9 @@
         form.ShowDialog()
 
     End Sub
+
+    Private Sub EntradasESaídasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EntradasESaídasToolStripMenuItem.Click
+        Dim form = New frmMovimentacoes
+        form.ShowDialog()
+    End Sub
 End Class

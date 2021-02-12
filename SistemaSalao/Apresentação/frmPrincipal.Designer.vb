@@ -62,6 +62,7 @@ Partial Class frmPrincipal
         Me.lblData = New System.Windows.Forms.Label()
         Me.lblHora = New System.Windows.Forms.Label()
         Me.TimerData = New System.Windows.Forms.Timer(Me.components)
+        Me.EntradasESaídasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuPrincipal.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -88,32 +89,32 @@ Partial Class frmPrincipal
         'ClientesToolStripMenuItem
         '
         Me.ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
-        Me.ClientesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ClientesToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.ClientesToolStripMenuItem.Text = "Clientes"
         '
         'FornecedoresToolStripMenuItem
         '
         Me.FornecedoresToolStripMenuItem.Name = "FornecedoresToolStripMenuItem"
-        Me.FornecedoresToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.FornecedoresToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.FornecedoresToolStripMenuItem.Text = "Fornecedores"
         '
         'menuFuncionario
         '
         Me.menuFuncionario.Enabled = False
         Me.menuFuncionario.Name = "menuFuncionario"
-        Me.menuFuncionario.Size = New System.Drawing.Size(180, 22)
+        Me.menuFuncionario.Size = New System.Drawing.Size(145, 22)
         Me.menuFuncionario.Text = "Funcionários"
         '
         'ServiçosToolStripMenuItem1
         '
         Me.ServiçosToolStripMenuItem1.Name = "ServiçosToolStripMenuItem1"
-        Me.ServiçosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ServiçosToolStripMenuItem1.Size = New System.Drawing.Size(145, 22)
         Me.ServiçosToolStripMenuItem1.Text = "Serviços"
         '
         'EsToolStripMenuItem
         '
         Me.EsToolStripMenuItem.Name = "EsToolStripMenuItem"
-        Me.EsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EsToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.EsToolStripMenuItem.Text = "Especilidade"
         '
         'ProdutosToolStripMenuItem
@@ -128,13 +129,13 @@ Partial Class frmPrincipal
         '
         Me.menuProduto.Enabled = False
         Me.menuProduto.Name = "menuProduto"
-        Me.menuProduto.Size = New System.Drawing.Size(180, 22)
+        Me.menuProduto.Size = New System.Drawing.Size(121, 22)
         Me.menuProduto.Text = "Cadastro"
         '
         'EntradasToolStripMenuItem
         '
         Me.EntradasToolStripMenuItem.Name = "EntradasToolStripMenuItem"
-        Me.EntradasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EntradasToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.EntradasToolStripMenuItem.Text = "Entradas"
         '
         'ServiçosToolStripMenuItem
@@ -148,18 +149,18 @@ Partial Class frmPrincipal
         'AgendamentoToolStripMenuItem
         '
         Me.AgendamentoToolStripMenuItem.Name = "AgendamentoToolStripMenuItem"
-        Me.AgendamentoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgendamentoToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.AgendamentoToolStripMenuItem.Text = "Agendamento"
         '
         'QuadroDeHoráriosToolStripMenuItem1
         '
         Me.QuadroDeHoráriosToolStripMenuItem1.Name = "QuadroDeHoráriosToolStripMenuItem1"
-        Me.QuadroDeHoráriosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.QuadroDeHoráriosToolStripMenuItem1.Size = New System.Drawing.Size(176, 22)
         Me.QuadroDeHoráriosToolStripMenuItem1.Text = "Quadro de horários"
         '
         'MovimentaçõesToolStripMenuItem
         '
-        Me.MovimentaçõesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QuadroDeHoráriosToolStripMenuItem, Me.GastosToolStripMenuItem, Me.PagamentosToolStripMenuItem})
+        Me.MovimentaçõesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QuadroDeHoráriosToolStripMenuItem, Me.GastosToolStripMenuItem, Me.PagamentosToolStripMenuItem, Me.EntradasESaídasToolStripMenuItem})
         Me.MovimentaçõesToolStripMenuItem.Image = CType(resources.GetObject("MovimentaçõesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.MovimentaçõesToolStripMenuItem.Name = "MovimentaçõesToolStripMenuItem"
         Me.MovimentaçõesToolStripMenuItem.Size = New System.Drawing.Size(120, 20)
@@ -194,13 +195,13 @@ Partial Class frmPrincipal
         'ProdutosToolStripMenuItem1
         '
         Me.ProdutosToolStripMenuItem1.Name = "ProdutosToolStripMenuItem1"
-        Me.ProdutosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ProdutosToolStripMenuItem1.Size = New System.Drawing.Size(122, 22)
         Me.ProdutosToolStripMenuItem1.Text = "Produtos"
         '
         'ClientesToolStripMenuItem1
         '
         Me.ClientesToolStripMenuItem1.Name = "ClientesToolStripMenuItem1"
-        Me.ClientesToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ClientesToolStripMenuItem1.Size = New System.Drawing.Size(122, 22)
         Me.ClientesToolStripMenuItem1.Text = "Clientes"
         '
         'SairToolStripMenuItem
@@ -410,6 +411,12 @@ Partial Class frmPrincipal
         '
         Me.TimerData.Enabled = True
         '
+        'EntradasESaídasToolStripMenuItem
+        '
+        Me.EntradasESaídasToolStripMenuItem.Name = "EntradasESaídasToolStripMenuItem"
+        Me.EntradasESaídasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EntradasESaídasToolStripMenuItem.Text = "Entradas e Saídas"
+        '
         'frmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -480,4 +487,5 @@ Partial Class frmPrincipal
     Friend WithEvents TimerData As Timer
     Friend WithEvents ProdutosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ClientesToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents EntradasESaídasToolStripMenuItem As ToolStripMenuItem
 End Class

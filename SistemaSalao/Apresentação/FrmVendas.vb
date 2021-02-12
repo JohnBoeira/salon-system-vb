@@ -9,6 +9,7 @@ Public Class FrmVendas
         Listar()
         CarregarCombobox()
         nomeCliente = ""
+
     End Sub
 
     Sub CarregarCombobox()
@@ -49,7 +50,7 @@ Public Class FrmVendas
             Dim dt As New DataTable
             Dim da As MySqlDataAdapter
 
-            Dim sql As String = "SELECT v.id, p.nome, v.cliente, v.quantidade, v.valor_total, v.data_venda FROM tb_vendas as v INNER JOIN tb_produtos as p on v.produto = p.id order by v.data_venda desc"
+            Dim sql As String = "SELECT v.id, p.nome, v.cliente, v.quantidade, v.valor_total, v.data_venda, v.funcionario FROM tb_vendas as v INNER JOIN tb_produtos as p on v.produto = p.id order by v.data_venda desc"
             da = New MySqlDataAdapter(sql, con)
 
             da.Fill(dt)
@@ -79,6 +80,7 @@ Public Class FrmVendas
         grid.Columns(3).HeaderText = "Quantidade"
         grid.Columns(4).HeaderText = "Valor venda"
         grid.Columns(5).HeaderText = "Data venda"
+        grid.Columns(6).HeaderText = "Funcionario"
 
     End Sub
 
@@ -200,6 +202,8 @@ Public Class FrmVendas
     End Sub
 
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
+        Dim id_mov As Integer
+
         If txtQuantidade.Text > "0" Then
 
             If txtQuantidade.Text <= txtEstoque.Text Then
@@ -217,7 +221,7 @@ Public Class FrmVendas
 
                     CalcularTotal()
 
-                    sql = "INSERT INTO tb_vendas (produto, cliente, quantidade, valor_total, data_venda) VALUES ('" & cbProduto.SelectedValue & "', '" & txtCliente.Text & "', '" & txtQuantidade.Text & "', '" & txtTotal.Text & "', '" & data_venda & "')"
+                    sql = "INSERT INTO tb_vendas (produto, cliente, quantidade, valor_total, data_venda, funcionario) VALUES ('" & cbProduto.SelectedValue & "', '" & txtCliente.Text & "', '" & txtQuantidade.Text & "', '" & txtTotal.Text & "', '" & data_venda & "', '" & nomeUsuario & "')"
                     cmd = New MySqlCommand(sql, con)
                     cmd.ExecuteNonQuery()
                     'Listagem da dataGrid
@@ -234,8 +238,36 @@ Public Class FrmVendas
                     cmdEstoque = New MySqlCommand(sqlEstoque, con)
                     cmdEstoque.ExecuteNonQuery()
 
+                    'READER para pegar ultimo id de venda e add em mov
+                    Dim cmdR As MySqlCommand
+                    Dim reader As MySqlDataReader
+                    Dim sqlR As String
 
+                    sqlR = "SELECT MAX(id) FROM tb_vendas "
+                    cmdR = New MySqlCommand(sqlR, con)
+                    reader = cmdR.ExecuteReader
 
+                    If reader.Read = True Then
+                        'RECUPERANDO DADOS 
+                        Dim id As Integer
+
+                        id = reader(0)
+                        id_mov = id
+                        MsgBox(id_mov)
+                        reader.Close()
+
+                    Else
+                        MsgBox("dados não encontrados", MsgBoxStyle.Information, "id")
+                    End If
+                    reader.Close()
+
+                    'INSERT DAS MOVES NA TB_MOVIMENTAÇÕES
+                    Dim cmdMov As MySqlCommand
+                    Dim sqlMov As String
+
+                    sqlMov = "INSERT INTO tb_movimentacoes (tipo, movimento, valor, funcionario, data, id_movimento) VALUES ('Entrada', 'Venda', '" & txtTotal.Text & "', '" & nomeUsuario & "', '" & data_venda & "', '" & id_mov & "')"
+                    cmdMov = New MySqlCommand(sqlMov, con)
+                    cmdMov.ExecuteNonQuery()
 
                     MsgBox("Salvo com sucesso!!", MsgBoxStyle.Information, "Dados Salvos")
                     DesabilitarCampos()
@@ -333,6 +365,14 @@ Public Class FrmVendas
             cmd = New MySqlCommand(sql, con)
             cmd.ExecuteNonQuery()
 
+            'DELETANDO DA TB MOVI
+            Dim cmdM As MySqlCommand
+            Dim sqlM As String
+
+            sqlM = "DELETE FROM tb_movimentacoes WHERE id_movimento='" & txtCodigo.Text & "' and movimento = 'Venda'"
+            cmdM = New MySqlCommand(sqlM, con)
+            cmdM.ExecuteNonQuery()
+
             'ABATENDO ESTOQUE 
             Dim cmdEstoque As MySqlCommand
             Dim sqlEstoque As String
@@ -369,7 +409,7 @@ Public Class FrmVendas
             data = DataBuscar.Value.ToString("yyyy-MM-dd")
 
             'listagem dos banco para o DataGrid
-            Dim sql As String = "SELECT v.id, p.nome, v.cliente, v.quantidade, v.valor_total, v.data_venda FROM tb_vendas as v INNER JOIN tb_produtos as p on v.produto = p.id WHERE v.data_venda = '" & data & "' order by v.data_venda desc"
+            Dim sql As String = "SELECT v.id, p.nome, v.cliente, v.quantidade, v.valor_total, v.data_venda, v.funcionario FROM tb_vendas as v INNER JOIN tb_produtos as p on v.produto = p.id WHERE v.data_venda = '" & data & "' order by v.data_venda desc"
             Dim dt As New DataTable
             Dim da As New MySqlDataAdapter(sql, con)
 
@@ -384,4 +424,5 @@ Public Class FrmVendas
         End Try
 
     End Sub
+
 End Class
